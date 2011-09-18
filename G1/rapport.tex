@@ -33,7 +33,7 @@
 
 %% Titel og forfatter
 \title{G1\\Maskinarkitektur\\Efterår 2011}
-\author{Jens Fredskov\\ Naja Mottelson (vsj465)\\Søren Pilgård (vpb984)}
+\author{Jens Fredskov\\ Naja Mottelson\\Søren Pilgård}
 
 %% Start dokumentet
 \begin{document}
@@ -66,13 +66,15 @@ Nedenfor er en gennemgang af de operationer 1-bit ALU'en understøtter og deres 
 \begin{description}
 \item[AND, OR] ALU'ens grundlæggende logiske funktioner benytter de indbyggede gates i logisim.
 \item[NOR] Outputtet til NOR udregnes som NOT A AND NOT B. 
-\item[Addition] ALU'en benytter et Adder-modul (se Figur \ref{fig:adder-1bit}), som vi i gruppen har 
+\item[Addition] ALU'en benytter et Adder-modul (se Figur \ref{fig:adder}), som vi i gruppen har 
              implementeret vha. logisims Combinatorial Analysis-værktøj og sandhedstabellen i Figur C.53. 
 \item[Subtraktion] Substraktionsfunktionen benytter samme Adder, blot med én af operanderne inverteret. 
 \item[Set on less than] Set on less than-operationen (SLT) er en komposit operation: Først sammenlignes A og B, 
                      hvilket giver resultatet 1 hvis A $<$ B, 0 ellers. Herefter sættes alle inputtets bits
                      til 0, med undtagelse af mindst betydende bit som sættes til resultatet af 
-                     sammenligningen. I forbindelse med 1-bit ALU'en giver SLT derfor ikke så megen mening.
+                     sammenligningen. Sammenligningen udfører vi tage differencen på de to input, eftersom
+                     en negativ difference $=> A < B$. Nedenfor beskrives logikken bag bla. SLT-implementationen
+                     nærmere. 
 \end{description}
 
 Som det ses adskiller seriens sidste 1-bit ALU sig fra de foregående ved at understøtte yderligere funktionalitet
