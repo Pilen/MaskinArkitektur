@@ -57,15 +57,6 @@ På Figur \ref{fig:circ1} ses vores implementation af de grundlæggende logiske
 gates (AND, OR, NOT, XOR) vha. NAND-gates. Som det ses følger vores implementering
 metoden i lærebogens Appendix C. 
 
-\begin{figure}[htb]
-\begin{center}
-\leavevmode
-\includegraphics[scale=0.70]{circ1.png}
-\end{center}
-\caption{NOT-, AND-, OR- og XOR-gates af NAND-gates}
-\label{fig:circ1} 
-\end{figure}
-
 \section{g1-2} 
 Overordnet er vores 4-bit ALU (se Figur \ref{fig:circ2}) implementeret som en serie af fire 1-bit ALU'er
 (se Figur \ref{fig:alu-1bit}) efter samme logik som den 32-bit ALU der præsenteres i Appendix C-29. Her 
@@ -86,24 +77,52 @@ Nedenfor er en gennemgang af de operationer 1-bit ALU'en understøtter og deres 
 
 Som det ses adskiller seriens sidste 1-bit ALU sig fra de foregående ved at understøtte yderligere funktionalitet
 til at undersøge for overløb (se Figur \ref{fig:overflow}) samt håndtering af SLT-operationen. Denne sidste del af 
-logikken har vi implementeret efter samme algoritme om beskrives i Appendix C-31-C-35. Bogens implementering
-benytter sign-bitten fra adderens output som output til SLT-operationen, hvilket undlader at tage højde for 
-over- og underløb ved to-komplementsaritmetik. Vi håndterer dette ved at indfaktorere outputtet fra 
-overløbsmodulet i udregningen af SLT. 
+logikken har vi implementeret efter samme algoritme som beskrives i Appendix C-31-C-35. Bogens implementering
+benytter sign-bitten fra adderen som output til SLT-operationen, hvilket undlader at tage højde for 
+over- og underløb ved to-komplementsaritmetik. Vi håndterer dette med en XOR-gate imellem outputtet fra 
+overløbsmodulet og adderen. 
  
 \paragraph{}
 Den færdige 4-bit ALU adskiller sig fra de forskellige 1-bits ALU'er ved også at give outputtet ZERO. Dette 
 beregnes ved at føre outputtet fra samtlige operationer igennem en XNOR-gate. 
 
+\section{g1-3}
+Vores 32-bit skifteenhed er implementeret som et enkelt kredsløb bestående af fem 4-IN multiplexere. 
+Hver multiplexer er forbundet til en enkelt bit i shamt og vil, hvis pågældende bit er sat, skifte 
+inputtet hhv. 1, 2, 4, 8 og 16 pladser. Hvilken skifteoperationen der benyttes specificeres af 
+multiplexerens op-input. Hvis bitten i shamt er lav videresendes inputtet uændret. [NB! Det med 
+det fjerde MUX-input!]
+
+\paragraph{}
+Skifteoperationerne selv er implementeret ved brug af logisims sign extender-modul således at 
+der kopieres et antal bits (hhv. 1, 2, 4, 8 og 16) ind i inputtet. Ved udførelse
+af sll-operationen erstatter sign extenderens output de bagerste $n$ bits i inputtet, hvor 
+srl-operationen erstatter de forreste $n$ bits. Ved udførelse af sra-operationen indkopieres
+inputtets mest betydende bit - dette har vi implementeret vha. en AND-gate imellem den mest
+betydende bit og op-inputtet. Som det ses understøtter vores skifteenhed yderligere 
+operationen shift left arithmetic (sla), implementeret på samme vis som sra.
+
+\paragraph{}
+En anden måde at implementere skifteoperationerne ville være at splitte wires imellem
+et 32-bit input og output manuelt. På denne måde ville man være nødsaget til at implementere
+en multiplexer for hver 
+
+\paragraph{}
+NB! Mangler argumentation for korrekthed/afprøvning!
+
+\section{Appendix}
+
+\subsection{NOT-, AND-, OR- og XOR-gates}
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.70]{circ2.png}
+\includegraphics[scale=0.70]{circ1.png}
 \end{center}
-\caption{ALU, 4-bit}
-\label{fig:circ2}
+\caption{NOT-, AND-, OR- og XOR-gates af NAND-gates}
+\label{fig:circ1} 
 \end{figure}
 
+\subsection{ALU, 1-bit m. overflow}
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
@@ -113,24 +132,24 @@ beregnes ved at føre outputtet fra samtlige operationer igennem en XNOR-gate.
 \label{fig:alu-1bit}
 \end{figure}
 
-\subsection{Multiplexer}
-
+\subsection{ALU, 1-bit u. overflow}
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.70]{mux-2bit.png}
+\includegraphics[scale=0.70]{alu-1bit.png}
 \end{center}
-\caption{MUX, 2 bit IN}
-\label{fig:mux2bit} 
+\caption{1-bit ALU u. undesøgelse af overløb}
+\label{fig:alu-1bit}
 \end{figure}
 
+\subsection{ALU, 4-bit}
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.70]{mux-4bit.png}
+\includegraphics[scale=0.70]{circ2.png}
 \end{center}
-\caption{MUX, 4 bit IN}
-\label{fig:mux4bit} 
+\caption{ALU, 4-bit}
+\label{fig:circ2}
 \end{figure}
 
 \subsection{Adder}
@@ -153,17 +172,26 @@ beregnes ved at føre outputtet fra samtlige operationer igennem en XNOR-gate.
 \label{fig:overflow}
 \end{figure}
 
-\section{g1-3}
-Vores 32-bit skifteenhed er implementeret som et enkelt kredsløb bestående af fem 4-IN multiplexere. 
-Hver multiplexer svarer til en bit i shamt og vil, hvis pågældende bit i shamt er sat, skifte inputtet
-hhv 1, 2, 4, 8 og 16 pladser. Hvilken skifteoperationen der benyttes specificeres af 
+\subsection{Multiplexere}
+\begin{figure}[htb]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.70]{mux-2bit.png}
+\end{center}
+\caption{MUX, 2 bit IN}
+\label{fig:mux2bit} 
+\end{figure}
 
+\begin{figure}[htb]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.70]{mux-4bit.png}
+\end{center}
+\caption{MUX, 4 bit IN}
+\label{fig:mux4bit} 
+\end{figure}
 
-
-Skifteoperationerne selv er implementeret ved brug af logisims sign extender-modul således at 
-der kopieres et antal bits (hhv. 1, 2, 4, 8 og 16) ind i inputtet. Fortegnet for det bit der 
-kopieres ind bestemmes som selector-bitten og den 
-
+\subsection{32-bit skifteenhed}
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
@@ -173,8 +201,6 @@ kopieres ind bestemmes som selector-bitten og den
 \label{fig:circ3}
 \end{figure}
 
-\paragraph{}
-NB! Mangler argumentation for korrekthed/afprøvning!
 
 
 
