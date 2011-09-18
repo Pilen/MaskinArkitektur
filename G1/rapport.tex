@@ -68,32 +68,32 @@ metoden i lærebogens Appendix C.
 
 \section{g1-2} 
 Overordnet er vores 4-bit ALU (se Figur \ref{fig:circ2}) implementeret som en serie af fire 1-bit ALU'er
-(se Figur \ref{fig:alu-1bit}) efter samme logik som den 32-bit ALU der præsenteres i Appenix C-29. Her 
+(se Figur \ref{fig:alu-1bit}) efter samme logik som den 32-bit ALU der præsenteres i Appendix C-29. Her 
 forbindes CarryOut-outputtet fra de mindre betydende bits til CarryIn-inputtet for de mere betydende. 
 Nedenfor er en gennemgang af de operationer 1-bit ALU'en understøtter og deres implementering: 
 
 \begin{description}
 \item[AND, OR] ALU'ens grundlæggende logiske funktioner benytter de indbyggede gates i logisim.
-\item[NOR] Outputtet til NOR udregnes som NOT A AND NOT B. Til dette benyttes multiplekserne 
-           Ainvert og Binvert. 
-\item[Addér] ALU'en benytter et Adder-modul (se Figur \ref{fig:adder-1bit}), som vi i gruppen har 
+\item[NOR] Outputtet til NOR udregnes som NOT A AND NOT B. 
+\item[Addition] ALU'en benytter et Adder-modul (se Figur \ref{fig:adder-1bit}), som vi i gruppen har 
              implementeret vha. logisims Combinatorial Analysis-værktøj og sandhedstabellen i Figur C.53. 
-\item[Subtrahér] Substraktionsfunktionen benytter samme Adder, blot med én af operanderne inverteret. 
-\item[Set Less Than] Set Less Than-operationen (SLT) er en komposit operation: Først sammenlignes A og B, 
+\item[Subtraktion] Substraktionsfunktionen benytter samme Adder, blot med én af operanderne inverteret. 
+\item[Set on less than] Set on less than-operationen (SLT) er en komposit operation: Først sammenlignes A og B, 
                      hvilket giver resultatet 1 hvis A $<$ B, 0 ellers. Herefter sættes alle inputtets bits
-                     til 0, med undtagelse af den mindst betydende bit som sættes til resultatet af 
-                     sammenligningen. I forbindelse med 1-bit ALU'en giver SLT derfor ikke så megen mening
-                     (NB! Er dette overhovedet korrekt? Logikken virker da udmærket, hvis man tager Set
-                     som output. Men det er vel defineret således at Result er det eneste output vi 
-                     interesserer os for?)
-\item[ZERO] Zero-outputtet er separat fra Result-outputtet og beregned ved at føre output-signalet fra 
-            de andre operationer igennem en XNOR-gate. (NB! Er Zero overhovedet defineret for 1-bit ALU'en?)
+                     til 0, med undtagelse af mindst betydende bit som sættes til resultatet af 
+                     sammenligningen. I forbindelse med 1-bit ALU'en giver SLT derfor ikke så megen mening.
 \end{description}
 
-Som det ses adskiller seriens sidste 1-bit ALU (som håndterer den mest betydende bit i inputtet) sig fra de
-foregående ved at understøtte yderligere funktionalitet til håndtering af SLT-operationen samt at undersøge
-for overløb. Udover overløbsmodulet (se Figur \ref{fig:overflow}) har vi implementeret denne del af logikken
-efter samme algoritme som beskrives i Appendix C-31-C-35. 
+Som det ses adskiller seriens sidste 1-bit ALU sig fra de foregående ved at understøtte yderligere funktionalitet
+til at undersøge for overløb (se Figur \ref{fig:overflow}) samt håndtering af SLT-operationen. Denne sidste del af 
+logikken har vi implementeret efter samme algoritme om beskrives i Appendix C-31-C-35. Bogens implementering
+benytter sign-bitten fra adderens output som output til SLT-operationen, hvilket undlader at tage højde for 
+over- og underløb ved to-komplementsaritmetik. Vi håndterer dette ved at indfaktorere outputtet fra 
+overløbsmodulet i udregningen af SLT. 
+ 
+\paragraph{}
+Den færdige 4-bit ALU adskiller sig fra de forskellige 1-bits ALU'er ved også at give outputtet ZERO. Dette 
+beregnes ved at føre outputtet fra samtlige operationer igennem en XNOR-gate. 
 
 \begin{figure}[htb]
 \begin{center}
@@ -154,7 +154,24 @@ efter samme algoritme som beskrives i Appendix C-31-C-35.
 \end{figure}
 
 \section{g1-3}
+Vores 32-bit skifteenhed er implementeret som et enkelt kredsløb bestående af fem 4-IN multiplexere. 
+Hver multiplexer svarer til en bit i shamt og vil, hvis pågældende bit i shamt er sat, skifte inputtet
+hhv 1, 2, 4, 8 og 16 pladser. Hvilken skifteoperationen der benyttes specificeres af 
 
+
+
+Skifteoperationerne selv er implementeret ved brug af logisims sign extender-modul således at 
+der kopieres et antal bits (hhv. 1, 2, 4, 8 og 16) ind i inputtet. Fortegnet for det bit der 
+kopieres ind bestemmes som selector-bitten og den 
+
+\begin{figure}[htb]
+\begin{center}
+\leavevmode
+\includegraphics[scale=0.45]{circ3.png}
+\end{center}
+\caption{32-bit skifteenhed}
+\label{fig:circ3}
+\end{figure}
 
 \paragraph{}
 NB! Mangler argumentation for korrekthed/afprøvning!
