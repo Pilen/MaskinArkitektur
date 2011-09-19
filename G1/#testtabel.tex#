@@ -1,0 +1,58 @@
+ 
+\documentclass[10pt,a4paper,danish]{article}
+%% Indlæs ofte brugte pakker
+\usepackage{amssymb}
+\usepackage[danish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{todonotes}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\rhead{\today}
+\rfoot{\thepage}
+\setlength{\parindent}{0pt}
+
+% Opsæt indlæsning af filer
+\lstset{
+  language=Python,
+  extendedchars=\true,
+  inputencoding=utf8,
+  linewidth=\textwidth, basicstyle=\small,
+  numbers=left, numberstyle=\footnotesize,
+  tabsize=2, showstringspaces=false,
+  breaklines=true, breakatwhitespace=false,
+}
+
+%% Titel og forfatter
+\title{G1\\Maskinarkitektur\\Efterår 2011}
+\author{Jens Fredskov\\ Naja Mottelson (vsj465)\\Søren Pilgård (vpb984)}
+
+%% Start dokumentet
+\begin{document}
+
+\begin{tabular}{l l l | l}
+  \hline\\
+  op & shamt & in & result\\
+  \hline\\
+  00 & 00000 & 00000000 00000000 00000000 00000000 & 00000000 00000000 00000000 00000000\\
+  00 & 10000 & 10100001 01000111 01000010 11010000 & 01000010 11010000 00000000 00000000\\
+  11 & 00100 & 10100001 00101010 00000101 00100100 & 11111010 00010010 10100000 01010010\\
+  10 & 10101 & 10100001 00100010 01011100 11010101 & 00000000 00000000 00000101 00001001\\
+  10 & 11100 & 10100001 00111101 11000110 10111100 & 00000000 00000000 00000000 00001010\\
+  11 & 10110 & 10100001 00111110 00110111 00010110 & 11111111 11111111 11111110 10000100\\
+  11 & 00011 & 10100001 00111001 01100101 10000011 & 11110100 00100111 00101100 10110000\\
+  00 & 00110 & 10100001 00001111 00011011 11100110 & 01000011 11000110 11111001 10000000\\
+  01 & 11010 & 10100001 00011111 00000000 10110100 & 11010011 11111111 11111111 11111111\\
+  \hline\\
+\end{tabular}
+
+\end{document}

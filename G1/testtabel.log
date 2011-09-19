@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2011.9.18)  19 SEP 2011 07:09
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (TeX Live 2012/dev/Arch Linux) (format=pdflatex 2011.9.18)  19 SEP 2011 06:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**\input rapport.tex
-(./rapport.tex (/usr/share/texmf-dist/tex/latex/base/article.cls
+**\input testtabel.tex
+(./testtabel.tex (/usr/share/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
@@ -790,31 +790,28 @@ LaTeX Info: Redefining \] on input line 2667.
 )
 (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2004/09/05 1.3 listings language file
-) (./rapport.aux
+) (./testtabel.aux)
+\openout1 = `testtabel.aux'.
 
-LaTeX Warning: Label `fig:alu-1bit' multiply defined.
-
-)
-\openout1 = `rapport.aux'.
-
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
 \c@lstlisting=\count151
 \AtBeginShipoutBox=\box39
-Package hyperref Info: Link coloring OFF on input line 39.
- (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package hyperref Info: Link coloring OFF on input line 40.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
 (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -822,14 +819,16 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count152
 )
-LaTeX Info: Redefining \ref on input line 39.
-LaTeX Info: Redefining \pageref on input line 39.
-LaTeX Info: Redefining \nameref on input line 39.
- (./rapport.out) (./rapport.out)
-\@outlinefile=\write4
-\openout4 = `rapport.out'.
+LaTeX Info: Redefining \ref on input line 40.
+LaTeX Info: Redefining \pageref on input line 40.
+LaTeX Info: Redefining \nameref on input line 40.
 
- (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
+(./testtabel.out) (./testtabel.out)
+\@outlinefile=\write4
+\openout4 = `testtabel.out'.
+
+
+(/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count153
 \scratchdimen=\dimen180
@@ -858,131 +857,45 @@ File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
 ABD: EveryShipout initializing macros
-LaTeX Font Info:    Try loading font information for U+msa on input line 43.
+LaTeX Font Info:    Try loading font information for U+msa on input line 42.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 43.
+LaTeX Font Info:    Try loading font information for U+msb on input line 42.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./rapport.toc)
-\tf@toc=\write5
-\openout5 = `rapport.toc'.
-
- [2]
-Overfull \hbox (4.91736pt too wide) in paragraph at lines 80--86
-\OT1/cmr/m/n/10 hvil-ket und-la-der at ta-ge h^^\jde for over- og un-derl^^\b v
-ed to-komplementsaritmetik.
- []
-
-[3]
-Overfull \hbox (80.0011pt too wide) in paragraph at lines 120--135
+)
+Overfull \hbox (80.0011pt too wide) in paragraph at lines 42--57
 [][] 
  []
 
-<circ1.png, id=103, 383.4325pt x 501.875pt>
-File: circ1.png Graphic file (type png)
- <use circ1.png>
-Package pdftex.def Info: circ1.png used on input line 145.
-(pdftex.def)             Requested size: 268.40092pt x 351.31009pt.
- [4]
-<alu-1bit-overflow.png, id=113, 451.6875pt x 363.3575pt>
-File: alu-1bit-overflow.png Graphic file (type png)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 58.
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
-<use alu-1bit-overflow.png>
-Package pdftex.def Info: alu-1bit-overflow.png used on input line 155.
-(pdftex.def)             Requested size: 316.17908pt x 254.3485pt.
- <alu-1bit.png, id=114, 363.3575pt x 325.215pt>
-File: alu-1bit.png Graphic file (type png)
-
-<use alu-1bit.png>
-Package pdftex.def Info: alu-1bit.png used on input line 165.
-(pdftex.def)             Requested size: 254.3485pt x 227.64894pt.
- <circ2.png, id=115, 522.95375pt x 419.5675pt>
-File: circ2.png Graphic file (type png)
-
-<use circ2.png>
-Package pdftex.def Info: circ2.png used on input line 175.
-(pdftex.def)             Requested size: 366.06512pt x 293.69524pt.
-
-Overfull \hbox (21.06512pt too wide) in paragraph at lines 174--176
- [] 
- []
-
-<adder-1bit.png, id=116, 348.30125pt x 413.545pt>
-File: adder-1bit.png Graphic file (type png)
- <use adder-1bit.png>
-Package pdftex.def Info: adder-1bit.png used on input line 185.
-(pdftex.def)             Requested size: 243.8092pt x 289.4795pt.
-
-<overflow-detection.png, id=117, 323.2075pt x 106.3975pt>
-File: overflow-detection.png Graphic file (type png)
-
-<use overflow-detection.png>
-Package pdftex.def Info: overflow-detection.png used on input line 195.
-(pdftex.def)             Requested size: 226.2437pt x 74.47774pt.
- <mux-2bit.png, id=118, 210.7875pt x 157.58875pt>
-File: mux-2bit.png Graphic file (type png)
-
-<use mux-2bit.png>
-Package pdftex.def Info: mux-2bit.png used on input line 205.
-(pdftex.def)             Requested size: 147.55025pt x 110.31136pt.
- <mux-4bit.png, id=119, 191.71625pt x 178.6675pt>
-File: mux-4bit.png Graphic file (type png)
-
-<use mux-4bit.png>
-Package pdftex.def Info: mux-4bit.png used on input line 214.
-(pdftex.def)             Requested size: 134.20045pt x 125.06639pt.
- <circ3.png, id=120, 1021.8175pt x 408.52625pt>
-File: circ3.png Graphic file (type png)
-
-<use circ3.png>
-Package pdftex.def Info: circ3.png used on input line 224.
-(pdftex.def)             Requested size: 459.81363pt x 183.83511pt.
-
-Overfull \hbox (114.81363pt too wide) in paragraph at lines 223--225
- [] 
- []
-
-[5 <./circ1.png (PNG copy)>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 234.
- [6 <./alu-1bit-overflow.png (PNG copy)>] [7 <./alu-1bit.png (PNG copy)>] [8 <.
-/circ2.png (PNG copy)>] [9 <./adder-1bit.png (PNG copy)> <./overflow-detection.
-png (PNG copy)> <./mux-2bit.png (PNG copy)>]
-[10 <./mux-4bit.png (PNG copy)> <./circ3.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 234.
- (./rapport.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 234.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 234.
-Package rerunfilecheck Info: File `rapport.out' has not changed.
-(rerunfilecheck)             Checksum: 7AD7191021F8AAB6BCBDD8BB4ED61C75;736.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 234.
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 58.
+ (./testtabel.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 58.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 58.
+Package rerunfilecheck Info: File `testtabel.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 58.
  ) 
 Here is how much of TeX's memory you used:
- 16764 strings out of 493633
- 284505 string characters out of 3148832
- 388035 words of memory out of 3000000
- 19706 multiletter control sequences out of 15000+200000
- 11503 words of font info for 45 fonts, out of 3000000 for 9000
+ 16617 strings out of 493633
+ 282680 string characters out of 3148832
+ 381035 words of memory out of 3000000
+ 19621 multiletter control sequences out of 15000+200000
+ 5339 words of font info for 22 fonts, out of 3000000 for 9000
  831 hyphenation exceptions out of 8191
- 63i,11n,72p,450b,373s stack positions out of 5000i,500n,10000p,200000b,50000s
-</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fon
-ts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on rapport.pdf (10 pages, 132478 bytes).
+ 63i,11n,72p,452b,344s stack positions out of 5000i,500n,10000p,200000b,50000s
+</usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>
+Output written on testtabel.pdf (1 page, 14706 bytes).
 PDF statistics:
- 184 PDF objects out of 1000 (max. 8388607)
- 155 compressed objects within 2 object streams
- 39 named destinations out of 1000 (max. 500000)
- 162 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 20 PDF objects out of 1000 (max. 8388607)
+ 15 compressed objects within 1 object stream
+ 2 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -92,8 +92,24 @@ beregnes ved at føre outputtet fra samtlige operationer igennem en XOR-gate.
 Vores 32-bit skifteenhed er implementeret som et enkelt kredsløb bestående af fem 4-IN multiplexere. 
 Hver multiplexer er forbundet til en enkelt bit i shamt og vil, hvis pågældende bit er sat, skifte 
 inputtet hhv. 1, 2, 4, 8 og 16 pladser. Hvilken skifteoperationen der benyttes specificeres af 
-multiplexerens op-input. Hvis bitten i shamt er lav videresendes inputtet uændret. [NB! Det med 
-det fjerde MUX-input!]
+multiplexerens op-input. Hvis bitten i shamt er lav videresendes inputtet uændret.
+
+For at styre muxen tages der 2 bit i betragtning, shamt som angiver om den specifike mux skal skifte og right som er bit 1 fra op.
+I \ref{fig:shifterchoice} ses det at hvis shamt er sat til nul skal ouputet være enten kannal 00 eller 01. Hvis shamt er sat til nul må det også betyde at vi skal videresende det uændrede signal. Derfor føres den samme ledning ind i begge indgange. Hvis shamt er sat til 1 og rigth er 0 må det betyde at vi skal videresende det venstreskiftede signal som vi tager i indgang 10. På samme måde ved vi at hvis shamt er 1 og right er 1 skal det højreskiftede signal videresendes og vi vælger at videresende indholdet af indgang 11.
+\begin{figure}[htb]
+  \begin{tabular}{l l | l}
+    \hline\\
+    shamt & shift right & output\\
+    \hline\\
+    0 & 0 & 0 0
+    0 & 1 & 0 1
+    1 & 0 & 1 0
+    1 & 1 & 1 1
+    \hline\\
+  \end{tabular}
+  \caption{Et udsnit af testkredsløbets værdier}
+  \label{fig:shifterchoice}
+\end{figure}
 
 \paragraph{}
 Skifteoperationerne selv er implementeret ved brug af logisims sign extender-modul således at 
@@ -111,6 +127,30 @@ en multiplexer for hver
 
 \paragraph{}
 NB! Mangler argumentation for korrekthed/afprøvning!
+For at afprøve skifteenheden lavede vi et lille testkredsløb der fodrede skifteenheden med tilfældige data.
+Vi sammenlignede så resultaterne med input værdierne ved simpelt at opskrive dem over hinanden forskudt med shamtværdien.
+På denne måde kunne vi let teste skifteenheden med en stor række data.
+I \ref{fig:shiftertest} ses et udsnit af de værdier testkredsløbet kørte, det ses let at værdierne er skiftet korrekt.
+
+\begin{figure}[htb]
+\begin{tabular}{l l l | l}
+  \hline\\
+  op & shamt & in & result\\
+  \hline\\
+  00 & 00000 & 00000000 00000000 00000000 00000000 & 00000000 00000000 00000000 00000000\\
+  00 & 10000 & 10100001 01000111 01000010 11010000 & 01000010 11010000 00000000 00000000\\
+  11 & 00100 & 10100001 00101010 00000101 00100100 & 11111010 00010010 10100000 01010010\\
+  10 & 10101 & 10100001 00100010 01011100 11010101 & 00000000 00000000 00000101 00001001\\
+  10 & 11100 & 10100001 00111101 11000110 10111100 & 00000000 00000000 00000000 00001010\\
+  11 & 10110 & 10100001 00111110 00110111 00010110 & 11111111 11111111 11111110 10000100\\
+  11 & 00011 & 10100001 00111001 01100101 10000011 & 11110100 00100111 00101100 10110000\\
+  00 & 00110 & 10100001 00001111 00011011 11100110 & 01000011 11000110 11111001 10000000\\
+  01 & 11010 & 10100001 00011111 00000000 10110100 & 11010011 11111111 11111111 11111111\\
+  \hline\\
+\end{tabular}
+\caption{Et udsnit af testkredsløbets værdier}
+\label{fig:shiftertest}
+\end{figure}
 
 \section{Appendix}
 

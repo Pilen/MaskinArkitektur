@@ -7,12 +7,12 @@
 \contentsline {paragraph}{}{4}{section*.3}
 \contentsline {paragraph}{}{4}{section*.4}
 \contentsline {paragraph}{}{4}{section*.5}
-\contentsline {section}{\numberline {5}Appendix}{4}{section.5}
-\contentsline {subsection}{\numberline {5.1}NOT-, AND-, OR- og XOR-gates}{4}{subsection.5.1}
-\contentsline {subsection}{\numberline {5.2}ALU, 1-bit m. overflow}{4}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}ALU, 1-bit u. overflow}{4}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}ALU, 4-bit}{4}{subsection.5.4}
-\contentsline {subsection}{\numberline {5.5}Adder}{4}{subsection.5.5}
-\contentsline {subsection}{\numberline {5.6}Overl\IeC {\o }bskontrol}{4}{subsection.5.6}
-\contentsline {subsection}{\numberline {5.7}Multiplexere}{4}{subsection.5.7}
-\contentsline {subsection}{\numberline {5.8}32-bit skifteenhed}{4}{subsection.5.8}
+\contentsline {section}{\numberline {5}Appendix}{5}{section.5}
+\contentsline {subsection}{\numberline {5.1}NOT-, AND-, OR- og XOR-gates}{5}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}ALU, 1-bit m. overflow}{6}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}ALU, 1-bit u. overflow}{6}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}ALU, 4-bit}{6}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Adder}{6}{subsection.5.5}
+\contentsline {subsection}{\numberline {5.6}Overl\IeC {\o }bskontrol}{6}{subsection.5.6}
+\contentsline {subsection}{\numberline {5.7}Multiplexere}{6}{subsection.5.7}
+\contentsline {subsection}{\numberline {5.8}32-bit skifteenhed}{6}{subsection.5.8}
