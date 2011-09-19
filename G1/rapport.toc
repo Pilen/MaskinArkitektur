@@ -7,6 +7,7 @@
 \contentsline {paragraph}{}{4}{section*.3}
 \contentsline {paragraph}{}{4}{section*.4}
 \contentsline {paragraph}{}{4}{section*.5}
+\contentsline {paragraph}{}{4}{section*.6}
 \contentsline {section}{\numberline {5}Appendix}{5}{section.5}
 \contentsline {subsection}{\numberline {5.1}NOT-, AND-, OR- og XOR-gates}{5}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}ALU, 1-bit m. overflow}{5}{subsection.5.2}
