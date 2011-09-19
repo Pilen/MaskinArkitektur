@@ -95,21 +95,7 @@ inputtet hhv. 1, 2, 4, 8 og 16 pladser. Hvilken skifteoperationen der benyttes s
 multiplexerens op-input. Hvis bitten i shamt er lav videresendes inputtet uændret.
 
 For at styre muxen tages der 2 bit i betragtning, shamt som angiver om den specifike mux skal skifte og right som er bit 1 fra op.
-I \ref{fig:shifterchoice} ses det at hvis shamt er sat til nul skal ouputet være enten kannal 00 eller 01. Hvis shamt er sat til nul må det også betyde at vi skal videresende det uændrede signal. Derfor føres den samme ledning ind i begge indgange. Hvis shamt er sat til 1 og rigth er 0 må det betyde at vi skal videresende det venstreskiftede signal som vi tager i indgang 10. På samme måde ved vi at hvis shamt er 1 og right er 1 skal det højreskiftede signal videresendes og vi vælger at videresende indholdet af indgang 11.
-\begin{figure}[htb]
-  \begin{tabular}{l l | l}
-    \hline\\
-    shamt & shift right & output\\
-    \hline\\
-    0 & 0 & 0 0
-    0 & 1 & 0 1
-    1 & 0 & 1 0
-    1 & 1 & 1 1
-    \hline\\
-  \end{tabular}
-  \caption{Et udsnit af testkredsløbets værdier}
-  \label{fig:shifterchoice}
-\end{figure}
+Hvis shamt er sat til nul skal ouputtet være enten kanal 00 eller 01. Hvis shamt er sat til nul må det også betyde at vi skal videresende det uændrede signal. Derfor føres den samme ledning ind i begge indgange. Hvis shamt er sat til 1 og right er 0 må det betyde at vi skal videresende det venstreskiftede signal som vi tager i indgang 10. På samme måde ved vi at hvis shamt er 1 og right er 1 skal det højreskiftede signal videresendes og vi vælger at videresende indholdet af indgang 11.
 
 \paragraph{}
 Skifteoperationerne selv er implementeret ved brug af logisims sign extender-modul således at 
