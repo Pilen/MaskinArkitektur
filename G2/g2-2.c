@@ -26,7 +26,7 @@ int longest_path(int limit) {
 }
 
 int main(){
-  longest_path(10)
-  longest_path(50)
+  longest_path(10);
+  longest_path(50);
 }
 
