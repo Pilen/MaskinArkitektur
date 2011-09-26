@@ -15,13 +15,14 @@ main:
   j done
 
 longest_path:
-	addi $t0, $zero, 1    # n is initialized
+    addi $t0, $zero, 1    # n is initialized
 	add $t1, $a0, $zero   # limit is initialized
 	add $t2, $zero, $zero # max-length initialized
 	sub $sp, $sp, 4       # Make room for the return address
 	sw $ra, 0($sp)        # Save the return address
-	long_loop:
-	   addi $a0, $t0, 0 # Store n as an argument
+	
+    long_loop:
+	    addi $a0, $t0, 0 # Store n as an argument
 		sub $sp, $sp, 12 # make room for four elements on the stack
 		sw $t2, 8($sp)   # Save max-length
 		sw $t1, 4($sp)   # Save limit
@@ -53,7 +54,7 @@ collatz:
 	
 	coll_if:
 		bne $a0, 1, coll_elif
-		j coll_done
+		jr $ra
 		
 	coll_elif:
 		andi $t1, $a0, 1 # $t1 = 0 if n%2 == 0
@@ -67,11 +68,8 @@ collatz:
 		addi $a0, $t2, 1  # 3*n+1
 		
 	coll_endif:
-		addi $v0, $v0, 1  # result = 1 + collatz(n)
-		j coll_if
-		
-	coll_done:
-	jr $ra
+	addi $v0, $v0, 1 # result = 1 + collatz(n)
+	j coll_if
 
 done:
   # at this point $s0 and $s1 should contain the results from the two 
