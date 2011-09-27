@@ -18,12 +18,12 @@ longest_path:
     addi $t0, $zero, 1    # n is initialized
 	add $t1, $a0, $zero   # limit is initialized
 	add $t2, $zero, $zero # max-length initialized
-	sub $sp, $sp, 4       # Make room for the return address
+	addi $sp, $sp, -4       # Make room for the return address
 	sw $ra, 0($sp)        # Save the return address
 	
     long_loop:
 	    addi $a0, $t0, 0 # Store n as an argument
-		sub $sp, $sp, 12 # make room for four elements on the stack
+		addi $sp, $sp, -12 # make room for four elements on the stack
 		sw $t2, 8($sp)   # Save max-length
 		sw $t1, 4($sp)   # Save limit
 		sw $t0, 0($sp)   # Save n
