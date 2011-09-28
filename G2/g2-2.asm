@@ -42,7 +42,8 @@ longest_path:
 		long_endif:
 		addi $t0, $t0, 1  # n++
 		slt $t4, $t0, $t1 # $t4 = 1 if n < limit
-		beq $t4, 1, long_loop # jump if n < limit
+		addi $t5, $zero, 1 # Create a 1 for comparison
+		beq $t4, $t5, long_loop # jump if n < limit
 		
 	lw $ra, 0($sp)   # Load the return address
 	addi $sp, $sp, 4 # Remove reservation on stack
@@ -53,7 +54,8 @@ collatz:
 	add $v0, $zero, $zero # set the result to 0
 	
 	coll_loop:
-		beq $a0, 1, coll_done
+		addi $t5, $zero, 1 # Create a 1 for comparison
+		beq $a0, $t5, coll_done
 		
 		andi $t1, $a0, 1 # $t1 = 0 if n%2 == 0
 		beq $t1, $zero, coll_if
