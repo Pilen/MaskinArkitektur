@@ -124,8 +124,8 @@ This file is intended to be loaded by Logisim (http://www.cburch.com/logisim/).
     <wire from="(1030,310)" to="(1040,310)"/>
     <wire from="(350,540)" to="(350,590)"/>
     <wire from="(720,330)" to="(750,330)"/>
-    <wire from="(780,480)" to="(780,670)"/>
     <wire from="(210,200)" to="(350,200)"/>
+    <wire from="(780,480)" to="(780,670)"/>
     <wire from="(690,170)" to="(690,310)"/>
     <wire from="(550,470)" to="(560,470)"/>
     <wire from="(620,60)" to="(620,250)"/>
@@ -1007,7 +1007,7 @@ l_jump2:
 001100101,000001#or
 001100111,001100#nor
 001101010,000111#slt
-000001100,000010#addiu
+000xxxxxx,000010#addiu
 010001100,000000#andi
 011001101,000001#ori
 100001010,000111#slti
