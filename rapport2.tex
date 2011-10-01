@@ -1,0 +1,73 @@
+\documentclass[10pt,a4paper,danish]{article}
+%% Indlæs ofte brugte pakker
+\usepackage{amssymb}
+\usepackage[danish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{todonotes}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\rhead{\today}
+\rfoot{\thepage}
+\setlength{\parindent}{0pt}
+
+% Opsæt indlæsning af filer
+\lstset{
+ language=Python,
+ extendedchars=\true,
+ inputencoding=utf8,
+ linewidth=\textwidth, basicstyle=\small,
+ numbers=left, numberstyle=\footnotesize,
+ tabsize=2, showstringspaces=false,
+ breaklines=true, breakatwhitespace=false,
+}
+
+%% Titel og forfatter
+\title{G2\\Maskinarkitektur\\Efterår 2011}
+\author{Jens Fredskov\\ Naja Mottelson\\Søren Pilgård}
+
+%% Start dokumentet
+\begin{document}
+
+%% Vis titel
+\maketitle
+\newpage
+
+%% Vis indholdsfortegnelse
+\tableofcontents
+\newpage
+
+%% Klar, parat, start!
+\section{Indledning}
+Denne rapport dokumenterer gruppens arbejde med anden godkendelsesopgave i kurset Maskinarkitektur. Den indeholder, for såvidt vi kan se, korrekte besvarelser af begge underopgaver. 
+
+\section{g2-1}
+De instruktioner der gennemgåes grundigt i lærebogen (lw, sw, beq) har vi implementeret efter samme algoritme der præsenteres dér. Vi vil derfor ikke bruge yderligere tid på at gennemgå dem her. [NB til Naja: Denne sektion skal udvides en del. Det går nok ikke bare at sige 'dem snakker vi ikke om'.]
+
+\section{addu, subu, and, or, nor, slt}
+Alle R-instruktioner har vi implementeret på grundlæggende samme måde: I kontrollen sættes Write-registeradressen til rd (vha. RegDst-bitten) og RegWrite-bitten sættes så at det er muligt at skrive til registrene. Resten af kontrollogikken foretages i ALU-kontrollen som modtager en 3-bit wire indeholdende ALUop-signalet fra kontrollen samt de 6 bits der hentes ud fra operationens funct-felt. Ud fra dette input genererer ALU-kontrollen et output på 6 bits, hvoraf de fire mindst betydende sendes til ALU'en som signal om hvilken af de aritmetisk-logiske instruktioner den skal udføre, hvorefter outputtet fra ALU'en skrives til registerbanken. I tilfældet af de grundlæggende R-instruktioner benyttes de to sidste bits i ALU-kontrollens output ikke. 
+
+\section{sll, srl, sra}
+Da skifteoperationerne ligeledes er R-instruktioner er de implementeret med samme kontrollogik som ovenfor. Her benyttes den fjerde bit i ALU-kontrollens output dog til at give shamt som den første operand til ALU'en i stedet for register rs. 
+
+\section{addiu, andi, ori, slti} 
+I-instruktionerne er implementeret på samme facon som R-instruktionerne med de undtagelser at der skrives til register rt samt at ALUsrc-bitten sættes i kontrollen. ALUsrc gives som selector-input til en MUX som vælger hvilket input der gives til ALU'ens anden operand. Når ALUsrc er sat vælges operationens immediate-felt, som er blevet enten nul- eller fortegnsudvidet afhængigt af instruktionen. Nul- eller fortegnsudvidelse specificeres ved kontrollens SignExtend-bit. 
+
+\section{j, jal}
+J-instruktionerne 
+
+
+
+\section{g2-2}
+
+\end{document}
+
