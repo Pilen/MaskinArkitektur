@@ -124,16 +124,21 @@ eneste der er sat. Signalet herfra går til en MUX der vælger imellem at skrive
 den standard-inkrementerede adresse til PC'en eller den der specificeres af
 instruktionens adressefelt. 
 
-\paragraph{}
-I tilfældet af instruktionen jal sættes RegWrite, så at der kan skrives til
-registerbanken, samt både j- og jal-bitten, hvis effekt er at skrive den
-standard-inkrementerede PC til register 31. \emph{Her føres rd- og rt-registrene
-igennem en dobbelt-MUX, og hvad der foregår her kan Naja ikke rigtig lure.
-Hilfe!}.
+Ved jal bliver samme bit som ved j-instruktionen sat således at der hoppes til
+en given adresse fra adressefeltet. Endvidere sættes jal-bitten som vha. en MUX vælger
+konstanten 31 (1f i hexadecimal) og sender dette til rW, hvilket er det register
+der skal skrives til. Derudover vælger jal-bitten også (igen vha. en MUX) mellem
+at sende det normale input og PC+4 til W, altså den data der skal skrives.
+Slutteligt sættes regWrite også således at skrivningen af PC+4 til register 31
+bliver udført.
 
 \section{g2-2}
 Vores implementation af underopgave 2 er at finde i den vedlagte fil g2-2.asm.
 Som dokumentation for denne henviser vi til de kommentarer der er anført i
 kildekodefilen selv. 
+
+Endvidere kan siges at koden giver de rigtige resultater (19 og 111 i decimal,
+dette samme som det udleverede C-program) både i MARS og på vores
+kredsløb (omend det sidste tager nogen tid).
 
 \end{document}
