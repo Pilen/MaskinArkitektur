@@ -87,7 +87,7 @@ bits der er sat i kontrollen for de forskellige instruktioner:
 \section{addu, subu, and, or, nor, slt, jr}
 Alle R-instruktioner har vi implementeret på grundlæggende samme måde: I
 kontrollen sættes Write-registeradressen til rd (vha. RegDst) og RegWrite sættes
-så at det er muligt at skrive til registrene. Resten af kontrollogikken
+så det er muligt at skrive til registrene. Resten af kontrollogikken
 foretages i ALU-kontrollen som modtager en 3-bit wire indeholdende
 ALUop-signalet fra kontrollen samt de 6 bits der hentes ud fra operationens
 funct-felt. Ud fra dette input genererer ALU-kontrollen et output på 6 bits,
