@@ -50,7 +50,7 @@
 Denne rapport dokumenterer gruppens arbejde med anden godkendelsesopgave i kurset Maskinarkitektur. Den indeholder, for såvidt vi kan se, korrekte besvarelser af begge underopgaver. 
 
 \section{g2-1}
-Vores implementation af enkeltcykluskredsløbet følger, i store træk, samme mønster som den beskrevet i lærebogens. Udover at forlænge ALUop-wiren fra kontrollen til ALUkontrollen med 1 bit har vi dog tilføjet tre nye kontrolbits, som kort beskrives i figur \ref{fig:newcontrols}
+Vores implementation af enkeltcykluskredsløbet følger i store træk samme mønster som den beskrevet i lærebogen. Udover at forlænge ALUop-wiren fra kontrollen til ALUkontrollen har vi dog tilføjet tre nye kontrolbits, som kort beskrives i figur \ref{fig:newcontrols}
 
 \begin{figure}[htb]
   \begin{tabular}{| l | p{5cm} | p{5cm} |}
@@ -68,7 +68,13 @@ Vores implementation af enkeltcykluskredsløbet følger, i store træk, samme m�
   \label{fig:newcontrols}
 \end{figure}
 
-De instruktioner der gennemgåes grundigt i lærebogen (lw, sw, beq) har vi implementeret efter samme algoritme der præsenteres dér. Vi vil derfor ikke bruge yderligere tid på at gennemgå dem her. 
+De instruktioner der gennemgåes grundigt i lærebogen (lw, sw, beq) har vi implementeret efter samme algoritme der præsenteres dér. Vi vil derfor ikke bruge yderligere tid på at gennemgå dem udførligt her, udover at angive hvilke bits der er sat i kontrollen for de forskellige instruktioner: 
+
+\begin{description}
+\item[lw:] MemRead, MemToReg, ALUsrc, RegWrite, SignExtend.
+\item[sw:] MemWrite, ALUsrc, SignExtend.
+\item[beq:] Branch, SignExtend, ALUop = 101 (signalerer til ALU'en om at udføre subtraktion).
+\end{description}
 
 \section{addu, subu, and, or, nor, slt, jr}
 Alle R-instruktioner har vi implementeret på grundlæggende samme måde: I kontrollen sættes Write-registeradressen til rd (vha. RegDst) og RegWrite sættes så at det er muligt at skrive til registrene. Resten af kontrollogikken foretages i ALU-kontrollen som modtager en 3-bit wire indeholdende ALUop-signalet fra kontrollen samt de 6 bits der hentes ud fra operationens funct-felt. Ud fra dette input genererer ALU-kontrollen et output på 6 bits, hvoraf de fire mindst betydende sendes til ALU'en som signal om hvilken af de aritmetisk-logiske instruktioner den skal udføre, hvorefter outputtet fra ALU'en skrives til registerbanken. I tilfældet af de grundlæggende R-instruktioner benyttes de to sidste bits i ALU-kontrollens output ikke.
