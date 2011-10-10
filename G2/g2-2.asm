@@ -19,14 +19,15 @@ longest_path:
     addu $t1, $a0, $zero   # limit is initialized
     addu $t2, $zero, $zero # max-length initialized
     addiu $sp, $sp, -4     # Make room for the return address
-    sw $ra, 0($sp)        # Save the return address
+    sw $ra, 0($sp)         # Save the return address
 
     long_loop:
-        addiu $a0, $t0, 0   # Store n as an argument
-        addiu $sp, $sp, -12 # make room for four elements on the stack
-        sw $t2, 8($sp)     # Save max-length
-        sw $t1, 4($sp)     # Save limit
-        sw $t0, 0($sp)     # Save n
+        addiu $a0, $t0, 0      # Store n as an argument
+		addu $a1, $zero, $zero # Store CURRENT iteration as an argument
+        addiu $sp, $sp, -12    # make room for four elements on the stack
+        sw $t2, 8($sp)         # Save max-length
+        sw $t1, 4($sp)         # Save limit
+        sw $t0, 0($sp)         # Save n
 
         jal collatz
 
@@ -35,44 +36,50 @@ longest_path:
         lw $t0, 0($sp)    # Load n
         addiu $sp, $sp, 12 # Reserve space on the stack
 
-        slt $t3, $t2, $v0      # $t3 = 1 if max-length < length
+        slt $t3, $t2, $v0          # $t3 = 1 if max-length < length
         beq $t3, $zero, long_endif # jump if max-length >= length
-        addu $t2, $v0, $zero    # max-length = length
+        addu $t2, $v0, $zero       # max-length = length
 
         long_endif:
-        addiu $t0, $t0, 1  # n++
-        slt $t4, $t0, $t1 # $t4 = 1 if n < limit
-        addiu $t5, $zero, 1 # Create a 1 for comparison
+        addiu $t0, $t0, 1       # n++
+        slt $t4, $t0, $t1       # $t4 = 1 if n < limit
+        addiu $t5, $zero, 1     # Create a 1 for comparison
         beq $t4, $t5, long_loop # jump if n < limit
 
-    lw $ra, 0($sp)   # Load the return address
+    lw $ra, 0($sp)    # Load the return address
     addiu $sp, $sp, 4 # Remove reservation on stack
     addiu $v0, $t2, 0 # Store the result
     jr $ra
 
 collatz:
-    addu $v0, $zero, $zero # set the result to 0
+    slt $t4, $zero, $a1   # t4 = 1 if 0 < iteration
+    addiu $t5, $zero, 1   # Create a 1 for comparison
+    beq $t4, $t5, coll_if # Branch if iteration > 0
+	addiu $sp, $sp, -4    # Reserve space on the stack
+	sw $ra, 0($sp)        # Store return address of the ORIGINAL caller
 
-    coll_loop:
-        addiu $t5, $zero, 1 # Create a 1 for comparison
+    coll_if:
         beq $a0, $t5, coll_done
 
         andi $t1, $a0, 1 # $t1 = 0 if n%2 == 0
-        beq $t1, $zero, coll_if
+        beq $t1, $zero, coll_elif
 
         addu $t2, $a0, $a0 # 2*n
         addu $t2, $t2, $a0 # 3*n
         addiu $a0, $t2, 1  # 3*n+1
         j coll_endif
 
-    coll_if:
+    coll_elif:
         srl $a0, $a0, 1 # n = n/2
 
     coll_endif:
-    addiu $v0, $v0, 1 # result = 1 + collatz(n)
-    j coll_loop
+    addiu $a1, $a1, 1 # iteration = 1 + collatz(n)
+    jal collatz       # The two arguments a0, a1 is again given as arguments
 
     coll_done:
+	lw $ra 0($sp)        # Load ORIGINAL callers return address
+	addiu $sp, $sp, 4    # Remove reservation on stack
+	addu $v0, $a1, $zero # store the final iteration a result
     jr $ra
 
 done:
