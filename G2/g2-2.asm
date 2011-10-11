@@ -84,7 +84,7 @@ collatz:
 
     coll_done:
         #EPILOUGE
-        lw $ra 0($sp)                   # Load return address
+        lw $ra, 0($sp)                  # Load return address
         addiu $sp, $sp, 4               # Remove reservation on stack
         jr $ra
 
