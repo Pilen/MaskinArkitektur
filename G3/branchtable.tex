@@ -1,0 +1,33 @@
+
+\begin{tabular}{l | l l}
+
+&                    forudsagt taget&          forudsagt ikke taget\\
+\hline
+faktisk taget:&      p++&                      p++, returner beqadd, flush\\
+faktisk ikke taget:& p--,returner pc+4,flush   p--\\
+\end{tabular}
+
+
+If (jr || !guess){
+  flushing = true
+}
+
+
+PC+4
+BEQmux
+
+ 
+guess= (BEQmux == Taget && BranchGuess)||(BEQmux != Taget && !BranchGuess);
+guess= (equal && BranchGuess) || (!equal && !BranchGuess)
+guess= !(equal ^^ BranchGuess)
+
+
+//00  1
+//01  0
+//10  0
+//11  1
+
+flushing = (jr || (branching &&!guess)); //vi kan fjerne xnor not and konstruktionen og skrive guess
+PCnew= JumpR?jr: (BEQmux);
+equal = (BEQmux == Target)
+PIncrement = Branching
