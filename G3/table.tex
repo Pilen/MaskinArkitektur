@@ -1,0 +1,16 @@
+\usepackage[table,x11names]{xcolor}
+
+\begin{table}[!h]
+    \hspace{1cm}
+    \begin{tabular}{ccc|cc}
+    Guess & Equal & Branching & Flush \& Send back & \\ \cline{1-4}
+    0 & 0 & 0 & 0 & \color{gray}Ingen branching og rigtigt gæt.\\
+    0 & 0 & 1 & 1 & \color{gray}Beq-adresse sendes tilbage.\\
+    0 & 1 & 0 & 0 & \color{gray}Bør kun kunne ske ved støj.\\
+    0 & 1 & 1 & 1 & \color{gray}Beq-adresse sendes tilbage.\\
+    1 & 0 & 0 & 1 & \color{gray}PC+4 sendes tilbage.\\
+    1 & 0 & 1 & 1 & \color{gray}Target og Beq er ikke ens. Vi sender Beq-adressen tilbage.\\
+    1 & 1 & 0 & 1 & \color{gray}PC+4 sendes tilbage.\\
+    1 & 1 & 1 & 0 & \color{gray}Branching og rigtigt gæt.\\
+    \end{tabular}
+\end{table}
