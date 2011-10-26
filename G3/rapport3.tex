@@ -11,7 +11,6 @@
 \usepackage{todonotes}
 \usepackage{algorithmic}
 \usepackage{amsmath}
-%\usepackage[table,x11names]{xcolor}
 
 \pagestyle{fancy}
 \fancyhead{}
@@ -49,12 +48,15 @@
 %% Klar, parat, start!
 \section{Indledning}
 Denne rapport dokumenterer gruppens arbejde med tredje godkendelsesopgave i kurset 
-Maskinarkitektur. Det udleverede afprøvningsprogram kører på vores arkitektur. 
-\todo{NB! Mere om afprøvning!} 
+Maskinarkitektur. Begge de udleverede afprøvningsprogrammer kører på
+arkitekturen, og giver de rigtige resultater (ift. til de kommentarerer som
+programmerne indeholder). Derudoverer arkitekturen afprøvet ved at lade vores
+program fra G2.2 (et program der udregner den længeste vej -- se evt. det
+vedlagte program).
 
 \paragraph{}
 I nærværende rapport har vi valgt at fokusere på at beskrive de punkter på 
-hvilke vores implementering adskiller sig fra det man kan finde i lærebogen - 
+hvilke vores implementering adskiller sig fra det man kan finde i lærebogen -- 
 de steder hvor vi har valgt at følge bogens tilgang er derfor som udgangspunkt
 ikke beskrevet her. Dette omfatter implementeringen af de aritmetisk-logiske
 instruktioner samt implementeringen af selve pipeline-registrene.  
@@ -69,7 +71,7 @@ for at trække 4 fra PC'en ved hopforudsigelsestabellen.
 \section{Fremsendingsenhed}
 Vores implementering af kredsløbets fremsendingsenhhed (se Figur \ref{fig:fu}) er 
 en direkte oversættelse af den pseudokode der er at finde i lærebogen (s. 369)
-- dog med de rettelser der er at finde i opgaveformuleringen. 
+-- dog med de rettelser der er at finde i opgaveformuleringen. 
 
 \paragraph{}
 Ved undersøgelse for datafarer i MEM-stadiet undersøges der først 
@@ -83,7 +85,7 @@ udtryk.
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.50]{forwarding_unit.png}
+\includegraphics[width=1\textwidth]{forwarding_unit.png}
 \end{center}
 \caption{Fremsendingsenhed}
 \label{fig:fu}
@@ -92,7 +94,7 @@ udtryk.
 \section{Fareafsløringsenhed}
 Ligesom fremsendingsenheden er vores fareafsløringsenhed (se Figur \ref{fig:hdu})
 implementeret fra pseudokoden i COD (s. 372). Det er vigtigt at bemærke at 
-det eneste enheden foretager sig er at stalle - informationen om hvorvidt de 
+det eneste enheden foretager sig er at stalle -- informationen om hvorvidt de 
 enkelte jump-instruktioner flusher pipeline-registre eller ej har vi flyttet
 ud i hver enkelt pipeline, som så modtager en flush-bit fra instruktionen. 
 
@@ -105,7 +107,7 @@ funktion er at flushe ID/EX-pipelinen.
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.70]{hazard_detection_unit.png}
+\includegraphics[width=1\textwidth]{hazard_detection_unit.png}
 \end{center}
 \caption{Fareafsløringsenhed}
 \label{fig:hdu} 
@@ -122,7 +124,7 @@ Denne mux tager også højde for input fra hopforudsigelsesenheden.
 \subsection{Jump and link}
 Vi har ændret kontrollogikken for jal-instruktionen så vi, såfremt
 jal-bitten er sat, allerede vælger register \$31 i afkodningsstadiet
- - vi sender \$31 med som instruktionens rd-felt i resten af kredsløbet,
+ -- vi sender \$31 med som instruktionens rd-felt i resten af kredsløbet,
 hvor det bruges som signal til fremsendingsenheden. Såfremt jal-bitten 
 er sat flusher vi også IF/ID. 
 
@@ -145,7 +147,7 @@ outputtet fra hopgætteenheden sat.
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.60]{branch_guessing_unit.png}
+\includegraphics[width=1\textwidth]{branch_guessing_unit.png}
 \end{center}
 \caption{Hopgætteenhed}
 \label{fig:bgu} 
@@ -178,32 +180,32 @@ fra PLA'en bestemmer hvorvidt IF/ID og ID/EX flushes, samt hvorvidt det er
 jr-adressen, beq-adressen eller PC + 4 der skal sendes til programtælleren. 
 Sandhedstabellen for PLA'ens udregninger forefindes nedenfor:
 
-\begin{table}[!h]
+\begin{table}[htb]
     \hspace{1cm}
     \begin{tabular}{ccc|cl}
-    Guess & Equal & Branching & Flush \& Send back & \\ \cline{1-4}
-    0 & 0 & 0 & 0 & \color{gray}Ingen branching og \\
-      &   &   &   & \color{gray}          rigtigt gæt.\\
-    0 & 0 & 1 & 1 & \color{gray}Beq-adresse sendes \\
-      &   &   &   & \color{gray}          tilbage.\\
-    0 & 1 & 0 & 0 & \color{gray}Bør kun kunne ske \\
-      &   &   &   & \color{gray}           ved støj.\\
-    0 & 1 & 1 & 1 & \color{gray}Beq-adresse sendes \\
-      &   &   &   & \color{gray}           tilbage.\\
-    1 & 0 & 0 & 1 & \color{gray}PC+4 sendes tilbage.\\
-    1 & 0 & 1 & 1 & \color{gray}Target og Beq er ikke\\
-      &   &   &   & \color{gray}        ens. Vi sender Beq-\\
-      &   &   &   & \color{gray}          adressen tilbage.\\
-    1 & 1 & 0 & 1 & \color{gray}PC+4 sendes tilbage.\\
-    1 & 1 & 1 & 0 & \color{gray}Branching og rigtigt\\
-      &   &   &   & \color{gray}           gæt.\\
+        Guess & Equal & Branching & Flush \& Send back & \\ \cline{1-4}
+        0 & 0 & 0 & 0 & \color{gray}Ingen branching og \\
+        &   &   &   & \color{gray}          rigtigt gæt.\\
+        0 & 0 & 1 & 1 & \color{gray}Beq-adresse sendes \\
+        &   &   &   & \color{gray}          tilbage.\\
+        0 & 1 & 0 & 0 & \color{gray}Bør kun kunne ske \\
+        &   &   &   & \color{gray}           ved støj.\\
+        0 & 1 & 1 & 1 & \color{gray}Beq-adresse sendes \\
+        &   &   &   & \color{gray}           tilbage.\\
+        1 & 0 & 0 & 1 & \color{gray}PC+4 sendes tilbage.\\
+        1 & 0 & 1 & 1 & \color{gray}Target og Beq er ikke\\
+        &   &   &   & \color{gray}        ens. Vi sender Beq-\\
+        &   &   &   & \color{gray}          adressen tilbage.\\
+        1 & 1 & 0 & 1 & \color{gray}PC+4 sendes tilbage.\\
+        1 & 1 & 1 & 0 & \color{gray}Branching og rigtigt\\
+        &   &   &   & \color{gray}           gæt.\\
     \end{tabular}
 \end{table} 
 
 \begin{figure}[htb]
 \begin{center}
 \leavevmode
-\includegraphics[scale=0.50]{jump_and_branch_excecutor.png}
+\includegraphics[width=1\textwidth]{jump_and_branch_excecution_unit.png}
 \end{center}
 \caption{Hopudførelsesenhed}
 \label{fig:jabe} 
